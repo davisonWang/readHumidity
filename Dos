@@ -1,0 +1,9 @@
+dir 
+mkdir folderName
+cd folderName    // enter the folder
+touch hello.c    // create file hello.c
+cd ..            // enter the upper folder
+notepad hello.c  // edit the file hello.c
+gcc hello.c      // compile the file
+a.exe            // run the file
+
