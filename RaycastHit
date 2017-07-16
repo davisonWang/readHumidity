@@ -1,0 +1,20 @@
+#pragma strict
+
+function Start () {
+}
+
+var newobject : Transform;
+var hit:RaycastHit;
+
+function Update () {
+if(Input.GetButtonDown("Fire1")){
+  var n :Transform = Instantiate(newobject,transform.position,transform.rotation);
+  var fwd:Vector3 = transform.TransformDirection(Vector3.forward);
+   n.GetComponent.<Rigidbody>().AddForce(fwd*2800);
+  
+  if(Physics.Raycast(transform.position,transform.forward,hit,20))
+   {
+     gameObject.Find("wenzi").GetComponent(UI.Text).text = hit.collider.gameObject.name;
+   }
+  }
+}
