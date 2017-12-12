@@ -1,0 +1,28 @@
+using UnityEngine;
+using System.Collections;
+using System.IO.Ports;
+
+public class Move : MonoBehaviour {
+	//SerialPort sp = new SerialPort("\\\\.\\COM11",9600);
+	SerialPort sp = new SerialPort("\\\\.\\COM10",9600);
+
+	//myPort= new SerialPort("\\\\.\\COM11",9600);
+
+	//static string  a;
+	//const string windowTitle = "Console";  
+
+	void Start () {
+		sp.Open ();
+		sp.ReadTimeout = 1;
+	}
+
+	void Update () 
+	{
+		try{
+
+			print (sp.ReadLine());
+		}
+		catch(System.Exception){
+		}
+	}
+}
