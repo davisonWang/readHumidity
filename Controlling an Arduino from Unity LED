@@ -1,0 +1,32 @@
+Once the circuit has been created, you’ll need to open the RYG.ino file in Arduino and compile, then upload it. 
+This is just a simple script that will change the LEDs over every second and make sure that the circuit is correct.
+Around this point you should note the COM port the Arduino is on (Tools/Serial Port).
+
+ 
+
+int gLed = 10; //corresponds to Pin 10 on the Arduino
+int yLed = 11; // Pin 11
+int rLed = 12; // Pin 12
+
+void setup() {
+pinMode(gLed, OUTPUT); //Sets all the LED pins to Output on start up
+pinMode(yLed, OUTPUT);
+pinMode(rLed, OUTPUT);
+
+digitalWrite(gLed, LOW);//turns all LEDs off.
+digitalWrite(yLed, LOW);
+digitalWrite(rLed, LOW);
+}
+
+void loop() {
+
+digitalWrite(gLed, HIGH); //turns Green on
+delay(1000); // Waits a second
+digitalWrite(gLed, LOW); //Green off
+digitalWrite(yLed, HIGH); // Yellow on
+delay(1000); // Waits a second
+digitalWrite(yLed, LOW); // Yellow Off
+digitalWrite(rLed, HIGH); //Red On
+delay(1000);
+digitalWrite(rLed, LOW);
+}
