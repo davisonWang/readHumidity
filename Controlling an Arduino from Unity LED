@@ -4,29 +4,44 @@ Around this point you should note the COM port the Arduino is on (Tools/Serial P
 
  
 
-int gLed = 10; //corresponds to Pin 10 on the Arduino
-int yLed = 11; // Pin 11
-int rLed = 12; // Pin 12
+int gLed = 10;
+int yLed = 11;
+int rLed = 12;
+char myCol[20];
+
 
 void setup() {
-pinMode(gLed, OUTPUT); //Sets all the LED pins to Output on start up
-pinMode(yLed, OUTPUT);
-pinMode(rLed, OUTPUT);
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(gLed, OUTPUT);
+  pinMode(yLed, OUTPUT);
+  pinMode(rLed, OUTPUT);
 
-digitalWrite(gLed, LOW);//turns all LEDs off.
-digitalWrite(yLed, LOW);
-digitalWrite(rLed, LOW);
+  digitalWrite(gLed, LOW);
+  digitalWrite(yLed, LOW);
+  digitalWrite(rLed, LOW);
 }
 
 void loop() {
+  // put your main code here, to run repeatedly:
 
-digitalWrite(gLed, HIGH); //turns Green on
-delay(1000); // Waits a second
-digitalWrite(gLed, LOW); //Green off
-digitalWrite(yLed, HIGH); // Yellow on
-delay(1000); // Waits a second
-digitalWrite(yLed, LOW); // Yellow Off
-digitalWrite(rLed, HIGH); //Red On
-delay(1000);
-digitalWrite(rLed, LOW);
+  int lf = 10;
+  Serial.readBytesUntil(lf, myCol, 1);
+    if(strcmp(myCol, "r") == 0){
+      digitalWrite(gLed, LOW);
+      digitalWrite(yLed, LOW);
+      digitalWrite(rLed, HIGH);
+    }
+
+    if(strcmp(myCol, "y") == 0){
+      digitalWrite(gLed, LOW);
+      digitalWrite(yLed, HIGH);
+      digitalWrite(rLed, LOW);
+    }
+
+    if(strcmp(myCol, "g") == 0){
+      digitalWrite(gLed, HIGH);
+      digitalWrite(yLed, LOW);
+      digitalWrite(rLed, LOW);
+    }
 }
